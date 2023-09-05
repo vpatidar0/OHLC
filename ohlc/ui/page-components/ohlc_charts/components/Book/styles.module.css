@@ -1,0 +1,35 @@
+.head{
+    display: flex;
+}
+.cantiner{
+    margin-top: 44% !important;
+    background-color: #172d3e;
+    width: 50%;
+}
+.value{
+    margin: 5px 20px;
+    width: 80px;
+    font-size: 11px;
+}
+.title{
+    display: inline-flex;
+    color: #8b969f;
+    font-size: 11px;
+}
+
+.header{
+    border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-right: 4px;
+    padding: 4px;
+    font-size: 14px;
+}
+
+.ti{
+    color:#8b969f;
+}
+
+.card{
+    display: flex;
+}
