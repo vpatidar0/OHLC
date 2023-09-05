@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 "use client"
 import { QueryClientProvider, QueryClient } from 'react-query';
 const queryClient = new QueryClient();

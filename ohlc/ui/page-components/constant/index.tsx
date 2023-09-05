@@ -1,2 +1,2 @@
-export const positiveDataPoint = ['count', 'price', 'amount'];
-export const negativeDataPoint=['price','amount','count'];
+export const positiveDataPoint = ['count','amount','total', 'price'];
+export const negativeDataPoint=['price','total','amount','count'];

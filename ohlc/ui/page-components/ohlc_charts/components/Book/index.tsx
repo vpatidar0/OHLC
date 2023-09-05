@@ -7,14 +7,25 @@ import Heaedr from './Header';
 import Body from './Body';
 import { positiveDataPoint, negativeDataPoint } from '@/ui/page-components/constant';
 const Book = () => {
-    const { data = [] } = useBookData()
+    const { orderBook = {} } = useBookData()
 
-    const formatData = data.map((item) => ({ price: item?.[0], count: item?.[1], amount: item?.[2] }))
+    const {asks,bids}=orderBook||{}
 
-    const nagtive = formatData.filter((item) => item.amount < 0)
-
-    const postive = formatData.filter((item) => item.amount > 0)
-
+    let total=0
+    const nagtive = asks
+    .map((item) => {
+        total +=item.amount 
+        return { ...item, total:Math.abs(total) };
+      });
+    
+    let totalPostive=0
+    const postive = asks
+      .map((item) => {
+        totalPostive +=item.amount 
+          return { ...item, 'total':Math.abs(totalPostive) };
+        });
+            
+  
     const [show, setShow] = useState(true)
     return <div className={styles.cantiner}>
         <div className={styles.header} onClick={() => setShow((prev) => !prev)}>
@@ -31,12 +42,12 @@ const Book = () => {
             <div className={styles.card}>
                 <div>
 
-                    <Body data={postive} pointData={positiveDataPoint} />
+                    <Body data={postive} pointData={positiveDataPoint} name='postiveColor'/>
 
                 </div>
                 <div>
 
-                    <Body data={nagtive} pointData={negativeDataPoint} />
+                    <Body data={nagtive} pointData={negativeDataPoint} name='negativeColor' />
                 </div>
             </div>
         </div> : null}

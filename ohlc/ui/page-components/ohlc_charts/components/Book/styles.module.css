@@ -2,14 +2,15 @@
     display: flex;
 }
 .cantiner{
-    margin-top: 44% !important;
     background-color: #172d3e;
-    width: 50%;
+    width: 45%;
 }
 .value{
-    margin: 5px 20px;
-    width: 80px;
+    margin: 2px 20px;
+    width: 30px;
     font-size: 11px;
+    opacity: 1.2;
+    
 }
 .title{
     display: inline-flex;
@@ -32,4 +33,20 @@
 
 .card{
     display: flex;
+}
+.postiveColor{
+    background-color:  #e44b44;
+    height: 20px;
+    position: absolute;
+    right: 0px;
+    opacity: 00.3;
+}
+.body{
+    position: relative;
+}
+.negativeColor{
+    background-color: rgba(3,202,155,0.4);;
+    height: 20px;
+    position: absolute;
+    left: 0px;
 }
