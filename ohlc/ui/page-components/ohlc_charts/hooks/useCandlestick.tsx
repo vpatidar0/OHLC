@@ -5,8 +5,6 @@ import HC_HollowCandlestick from 'highcharts/modules/hollowcandlestick'
 import 'highcharts/css/highcharts.css';
 HC_HollowCandlestick(Highcharts);
 
-type OHLCData = [number, number, number, number, number];
-type VolumeData = [number, number];
 type OptionData = {
   open: number;
   high: number;
