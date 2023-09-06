@@ -38,7 +38,7 @@
 }
 .postiveColor{
     background-color:  #e44b44;
-    height: 20px;
+    height: 17px;
     position: absolute;
     right: 0px;
     opacity: 00.3;
@@ -48,7 +48,7 @@
 }
 .negativeColor{
     background-color: rgba(3,202,155,0.4);;
-    height: 20px;
+    height: 17px;
     position: absolute;
     left: 0px;
 }

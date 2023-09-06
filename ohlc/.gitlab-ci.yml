@@ -1,6 +1,0 @@
-stages:
-  - build
-
-job:
-  script:
-    - pnpm install --no-frozen-lockfile
