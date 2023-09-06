@@ -12,7 +12,11 @@ type OptionData = {
 };
 
 const useFetchData=()=>{
-  const [filter,setFilter]=useState({time:'1m',select:'tBTCUSD'})
+  const [filter, setFilter] = useState({
+    time: "1m",
+    select: { value: "tBTCUSD", label: "BTC/USD" },
+    type:true
+  });
     const [zoomRange, setZoomRange] = useState(null);
     const [optionData, setOptionData] = useState<OptionData | null>(null);
 
@@ -21,14 +25,11 @@ const useFetchData=()=>{
     };
 
   
-    
-
-
  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api-pub.bitfinex.com/v2/candles/trade%3A${filter.time}%3A${filter.select}/hist`
+          `https://api-pub.bitfinex.com/v2/candles/trade%3A${filter.time}%3A${filter.select.value}/hist?end=${zoomRange}`
         );
         const data = await response.json();
 
