@@ -6,8 +6,9 @@ import { BiChevronDown, BiChevronRight } from 'react-icons/bi';
 import Heaedr from './Header';
 import Body from './Body';
 import { positiveDataPoint, negativeDataPoint } from '@/ui/page-components/constant';
-const Book = () => {
-    const { orderBook } = useBookData()
+const Book = ({filter}) => {
+    const [show, setShow] = useState(true)
+    const { orderBook } = useBookData({filter})
 
     const {asks,bids}=orderBook||{}
 
@@ -25,13 +26,12 @@ const Book = () => {
           return { ...item, 'total':Math.abs(totalPostive) };
         });
             
-  
-    const [show, setShow] = useState(true)
+
     return <div className={styles.cantiner}>
         <div className={styles.header} onClick={() => setShow((prev) => !prev)}>
             {show ? <BiChevronDown />
                 :
-                <BiChevronRight />} Order Book <span className={styles.ti}>BTC/USD</span>
+                <BiChevronRight />} Order Book <span className={styles.ti}>{filter.select.label}</span>
         </div>
         {show ? <div>
             <div className={styles.head}>

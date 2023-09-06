@@ -2,7 +2,7 @@ import { useQuery } from "@/packages/request/hooks/useQuery";
 import { getBookList } from "@/ui/api/get";
 import React, { useEffect, useState } from "react";
 
-const useBookData = () => {
+const useBookData = ({filter}) => {
   const [orderBook, setOrderBook] = useState<{ bids: any; asks: any }>({
     bids: [],
     asks: [],
@@ -15,7 +15,7 @@ const useBookData = () => {
         JSON.stringify({
           event: "subscribe",
           channel: "book",
-          symbol: "tBTCUSD",
+          symbol: filter.select.value,
           prec: "P0",
           freq: "F0",
           len: 25,

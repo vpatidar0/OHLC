@@ -7,10 +7,8 @@ import HighchartsStock from 'highcharts/modules/stock';
 import styles from './styles.module.css'
 HighchartsStock(Highcharts);
 import Filter from '../Filter/page';
-import useCandlestick from '../../hooks/useCandlestick'
-const Chart = () => {
+const Chart = ({optionData,filter,setFilter}) => {
 
-  const {optionData,setFilter,filter}=useCandlestick()
   const { negative = false, barX } = optionData || {}
   return (
     <div className={styles.container}>

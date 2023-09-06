@@ -5,7 +5,8 @@ import HC_HollowCandlestick from 'highcharts/modules/hollowcandlestick'
 import 'highcharts/css/highcharts.css';
 HC_HollowCandlestick(Highcharts);
 
-
+type OHLCData = [number, number, number, number, number];
+type VolumeData = [number, number];
 type OptionData = {
   open: number;
   high: number;
@@ -33,10 +34,13 @@ const useCandlestick = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api-pub.bitfinex.com/v2/candles/trade%3A${filter.time}%3A${filter.select.value}/hist`
+          `https://api-pub.bitfinex.com/v2/candles/trade%3A${filter.time}%3A${filter.select.value}/hist?end=${zoomRange}`
         );
         const data = await response.json();
         Highcharts.stockChart("container", {
+            chart: {
+                backgroundColor: '#172d3e',
+              },
           xAxis: {
             labels: {
               style: {
@@ -83,9 +87,6 @@ const useCandlestick = () => {
             },
           ],
           
-          chart: {
-              backgroundColor: '#172d3e',
-          },
         });
       } catch (error) {
         console.error("Error fetching data:", error);
