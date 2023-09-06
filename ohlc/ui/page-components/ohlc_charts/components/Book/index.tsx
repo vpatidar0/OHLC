@@ -7,7 +7,7 @@ import Heaedr from './Header';
 import Body from './Body';
 import { positiveDataPoint, negativeDataPoint } from '@/ui/page-components/constant';
 const Book = () => {
-    const { orderBook = {} } = useBookData()
+    const { orderBook } = useBookData()
 
     const {asks,bids}=orderBook||{}
 
@@ -19,7 +19,7 @@ const Book = () => {
       });
     
     let totalPostive=0
-    const postive = asks
+    const postive = bids
       .map((item) => {
         totalPostive +=item.amount 
           return { ...item, 'total':Math.abs(totalPostive) };

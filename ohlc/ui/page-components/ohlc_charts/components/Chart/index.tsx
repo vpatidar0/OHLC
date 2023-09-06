@@ -3,21 +3,15 @@ import React from 'react';
 import Highcharts from 'highcharts/highstock';
 import 'highcharts/css/annotations/popup.css';
 import HighchartsStock from 'highcharts/modules/stock';
-import 'highcharts/modules/data';
-import 'highcharts/modules/drag-panes';
-import 'highcharts/modules/annotations-advanced';
-import 'highcharts/modules/full-screen';
-import 'highcharts/modules/price-indicator';
-import 'highcharts/modules/stock-tools';
+
 import styles from './styles.module.css'
 HighchartsStock(Highcharts);
-import useFetchData from '../../hooks/usefetchData';
 import Filter from '../Filter/page';
 import useCandlestick from '../../hooks/useCandlestick'
 const Chart = () => {
 
-  const {optionData,setFilter,filter={}}=useCandlestick()
-  const { negative = false,barX } = optionData || {}
+  const {optionData,setFilter,filter}=useCandlestick()
+  const { negative = false, barX } = optionData || {}
   return (
     <div className={styles.container}>
       <div className={styles.filter_box}>
