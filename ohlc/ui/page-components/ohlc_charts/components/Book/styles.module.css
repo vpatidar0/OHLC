@@ -5,6 +5,7 @@
     background-color: #172d3e;
     width: 45%;
     margin: auto;
+
    
 }
 .value{
@@ -37,18 +38,19 @@
     display: flex;
 }
 .postiveColor{
-    background-color:  #e44b44;
+    background-color: rgba(3,202,155,0.4); 
     height: 18px;
     position: absolute;
     right: 0px;
-    opacity: 00.3;
+   
 }
 .body{
     position: relative;
 }
 .negativeColor{
-    background-color: rgba(3,202,155,0.4);;
+    background-color: #e44b44;
     height: 18px;
     position: absolute;
     left: 0px;
+    opacity: 00.3;
 }

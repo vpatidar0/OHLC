@@ -21,3 +21,10 @@ const control=[
     }
 ]
 export default control;
+
+
+export const options = [
+     { value: 'tBTCUSD', label: 'BTC/USD' },
+    { value: 'tLTCUSD', label: 'LTC/USD' },
+    { value: 'tETHUSD', label: 'ETH/USD' },
+];

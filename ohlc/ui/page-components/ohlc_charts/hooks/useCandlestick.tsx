@@ -39,18 +39,18 @@ const useCandlestick = () => {
             chart: {
                 backgroundColor: '#172d3e',
               },
-          xAxis: {
-            labels: {
-              style: {
-                color: "#8b969f",
-              },
-            },
-            events: {
-              afterSetExtremes: function (e) {
-                handleZoom(e);
-              },
-            },
-          },
+          // xAxis: {
+          //   labels: {
+          //     style: {
+          //       color: "#8b969f",
+          //     },
+          //   },
+          //   events: {
+          //     afterSetExtremes: function (e) {
+          //       handleZoom(e);
+          //     },
+          //   },
+          // },
 
           tooltip: {
             enabled: false,
@@ -71,9 +71,9 @@ const useCandlestick = () => {
             enabled: false,
           },
 
-          rangeSelector: {
-            enabled: false,
-          },
+          // rangeSelector: {
+          //   enabled: false,
+          // },
           series: [
             {
             
