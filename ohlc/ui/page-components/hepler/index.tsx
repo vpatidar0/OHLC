@@ -15,9 +15,11 @@ export const calculateOptionsForInterval = (inter) => {
   
     let tickMarkFormatter;
     let visibleRange;
-  
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+
   switch (type) {
-    case 'm':
+
+  case 'h':
       tickMarkFormatter = (time) => {
         const date = new Date(time * 1000);
         const hours = date.getHours() % 12 || 12; 
@@ -25,17 +27,8 @@ export const calculateOptionsForInterval = (inter) => {
         const minutes = date.getMinutes().toString().padStart(2, '0'); 
         return `${hours}:${minutes} ${ampm}`;
       };
-      visibleRange = { from:time, to: 0 }; // Show last 1 hour
-      break;
-  
-    case 'h':
-      tickMarkFormatter = (time) => {
-        const date = new Date(time * 1000);
-        const hours = date.getHours() % 12 || 12; 
-        const ampm = date.getHours() >= 12 ? 'PM' : 'AM'; 
-        return `${hours}${ampm}`;
-      };
-      visibleRange = { from: -time * 60 * 60, to: 0 }; 
+      const secondsInHour = 3600;
+      visibleRange = { from: currentTimestamp - (time * secondsInHour), to: currentTimestamp };
       break;
   
     case 'd':
@@ -44,32 +37,31 @@ export const calculateOptionsForInterval = (inter) => {
         const month = date.toLocaleString('default', { month: 'short' });
         return `${date.getDate()} ${month}`;
       };
-      visibleRange = { from: -time*24 * 60 * 60, to: 0 }; 
+      const secondsInDay = 86400;
+      visibleRange = { from: currentTimestamp - (time * secondsInDay), to: currentTimestamp };
       break;
   
     case 'M':
       tickMarkFormatter = (time) => {
         const date = new Date(time * 1000);
         const month = date.toLocaleString('default', { month: 'short' });
-        return `${month} ${date.getFullYear()}`;
+        return `${month} ${date.getDate()}`;
       };
-      visibleRange = { from: -time * 30 * 24 * 60 * 60, to: 0 }; 
+      const secondsInMonth = 30 * 24 * 60 * 60;
+      visibleRange = { from: currentTimestamp - (time * secondsInMonth), to: currentTimestamp };
       break;
-    case 'y':
+    default:
         tickMarkFormatter = (time) => {
           const date = new Date(time * 1000);
-          return date.getFullYear().toString();
+          const month = date.toLocaleString('default', { month: 'short' });
+          return `${month} ${date.getFullYear().toString()}`;
         };
-        visibleRange = { from: -time * 365 * 24 * 60 * 60, to: 0 };
-        break;
+
+        const secondsInYear = 365 * 24 * 60 * 60;
+        visibleRange = { from: currentTimestamp - (time * secondsInYear), to: currentTimestamp };  
+    break;
   
-    default:
-      tickMarkFormatter = (time) => {
-        const date = new Date(time * 1000);
-        return date.toISOString().split('T')[0];
-      };
-      visibleRange = { from: -time  * 60 * 60, to: 0 }; 
-      break;
+
   };
   return {tickMarkFormatter,visibleRange}
   }

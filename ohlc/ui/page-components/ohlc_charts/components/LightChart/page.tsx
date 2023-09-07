@@ -7,19 +7,27 @@ import FilterButton from './FilterButton/page';
 import Select from "@/ui/common/select";
 import { options } from '../../../constant/filter'
 import { CURMAPPING } from '@/ui/page-components/constant';
+interface ToolTipValue {
+  open: number; 
+  high: number; 
+  low: number; 
+  close: number; 
+  color: string; 
+  value: number; 
+}
+
 const LightChart = () => {
-  const [selectedInterval, setSelectedInterval] = useState( {time:1,type:'h',labal:'1h',parma:'1m'},);
+  const [selectedInterval, setSelectedInterval] = useState( {time:1,type:'h',labal:'1h',parma:'1m',page:'330'},);
   const [selectFilter, setSelectFilter] = useState('tBTCUSD')
   const chartContainerRef = useRef(null);
   const chartRef = useRef(null);
   const areaSeriesRef = useRef(null)
   const candlestickSeriesRef = useRef(null)
-  const [toolTipValue, setToolTipValue] = useState({})
+  const [toolTipValue, setToolTipValue] = useState<ToolTipValue | null>(null); 
 
   const fetchData = async () => {
-
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/candles/trade%3A${selectedInterval.parma}%3A${selectFilter}/hist?limit=330`
+      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/candles/trade%3A${selectedInterval.parma}%3A${selectFilter}/hist?limit=${selectedInterval.page}`
     );
     const data = await response.json();
     const responseValue = await fetch(
@@ -54,11 +62,18 @@ const LightChart = () => {
             color:'#385062', 
           },
         },
+        priceScale:{
+          borderColor:'#385062'
+        },
+        timeScale: {
+          borderColor: '#385062'
+        },
       };
-
+     
 
 
       const chartContainer = chartContainerRef.current;
+
       const chart = createChart(chartContainer, chartOptions);
       const intervalOptions = calculateOptionsForInterval(
         selectedInterval
@@ -83,7 +98,6 @@ const LightChart = () => {
       areaSeriesRef.current = areaSeries;
       candlestickSeriesRef.current = candlestickSeries;
     }
-    // areaSeriesRef.current.setData(dataTime.sort((a, b) => a.time - b.time));
     candlestickSeriesRef.current.setData(cdata.sort((a, b) => a.time - b.time));
 
     chartRef.current.timeScale().fitContent();
@@ -92,7 +106,7 @@ const LightChart = () => {
 
       if (param !== undefined && param.time !== undefined) {
         const currentTime = param.time;
-
+       console.log(currentTime,'currentTime')
         const candleData = cdata.find((data) => data.time === currentTime);
         if (candleData) {
           const { open, high, low, close } = candleData;
@@ -118,7 +132,7 @@ const LightChart = () => {
     });
 
     const lastDataPoint = dataTime[dataTime.length - 1];
-    // chartRef.current.timeScale().setVisibleRange(visibleRange);
+    chartRef.current.timeScale().setVisibleRange(visibleRange);
   };
 
 
@@ -130,6 +144,7 @@ const LightChart = () => {
     setSelectedInterval(interval);
   };
   const { open, high, low, close, color, value } = toolTipValue || {}
+
   const style = { color: color, padding: '0px 5px 0px 2px' }
   return <div className={styles.container}>
     <div className={styles.head_box}>
