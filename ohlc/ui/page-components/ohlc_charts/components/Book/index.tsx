@@ -9,6 +9,7 @@ import {
   positiveDataPoint,
   negativeDataPoint,
   addTotal,
+  CURMAPPING
 } from "@/ui/page-components/constant";
 const Book = ({ filter }) => {
   const [show, setShow] = useState(true);
@@ -22,7 +23,7 @@ const Book = ({ filter }) => {
     <div className={styles.cantiner}>
       <div className={styles.header} onClick={() => setShow((prev) => !prev)}>
         {show ? <BiChevronDown /> : <BiChevronRight />} Order Book{" "}
-        <span className={styles.ti}>{filter.select.label}</span>
+        <span className={styles.ti}>{CURMAPPING[filter.select]}</span>
       </div>
       {show ? (
         <div>

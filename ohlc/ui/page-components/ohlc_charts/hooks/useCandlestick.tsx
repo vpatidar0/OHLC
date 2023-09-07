@@ -17,7 +17,7 @@ type OptionData = {
 const useCandlestick = () => {
   const [filter, setFilter] = useState({
     time: "1m",
-    select: { value: "tBTCUSD", label: "BTC/USD" },
+    select: 'tBTCUSD',
   });
 
   const [zoomRange, setZoomRange] = useState(null);
@@ -32,7 +32,7 @@ const useCandlestick = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api-pub.bitfinex.com/v2/candles/trade%3A${filter.time}%3A${filter.select.value}/hist?end=${zoomRange}`
+          `${process.env.NEXT_PUBLIC_APP_BASE_URL}/candles/trade%3A${filter.time}%3A${filter.select}/hist?end=${zoomRange}`
         );
         const data = await response.json();
         Highcharts.stockChart("container", {
@@ -80,7 +80,6 @@ const useCandlestick = () => {
               type: 'hollowcandlestick',
               name: 'Hollow Candlestick',
               data: data
-            
               
             },
           ],

@@ -13,7 +13,7 @@ const useBookData = ({filter}) => {
         JSON.stringify({
           event: "subscribe",
           channel: "book",
-          symbol: filter.select.value,
+          symbol: filter.select,
           prec: "P0",
           freq: "F0",
           len: 25,

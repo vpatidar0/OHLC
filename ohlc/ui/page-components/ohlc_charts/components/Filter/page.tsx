@@ -1,8 +1,7 @@
 
 import control from '@/ui/page-components/constant/filter';
-import Select from 'react-select';
 import styles from './styles.module.css';
-
+import Select from '../../../../common/select'
 const options = [
     { value: 'tBTCUSD', label: 'BTC/USD' },
     { value: 'tLTCUSD', label: 'LTC/USD' },
@@ -21,13 +20,8 @@ const Filter = ({ filter, setFilter }) => {
                 className={`${styles.button} 
                 ${item.value === filter.time && styles.active}`} >{item.title}</div>
         })}
-        <Select
-            value={filter.select}
-            onChange={(e) => { setFilter((prev) => ({ ...prev, 'select': e })) }}
-            options={options}
-            className="basic-single"
-            classNamePrefix="select"
-            name="color"
-        /></div>
+
+        <Select options={options} onChange={(e) => { setFilter((prev) => ({ ...prev, 'select': e })) }}/>
+        </div>
 }
 export default Filter;

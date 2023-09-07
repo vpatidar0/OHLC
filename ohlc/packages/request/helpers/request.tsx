@@ -11,8 +11,6 @@ request.interceptors.request.use((oldConfig:any) => {
 	return {
 		...oldConfig,
 		headers: {
-			// 'cept': 'application/json',
-			// "access-control-allow-origin" : "https://trading.bitfinex.com",
 			"Content-type": "application/json",
 			
 		},

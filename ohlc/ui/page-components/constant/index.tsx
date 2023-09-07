@@ -25,3 +25,9 @@ export const addTotal=({data})=>{
         return { ...item, total:Math.abs(total) };
       });
 }
+
+export const CURMAPPING={
+    'tBTCUSD':'BTC/USD',
+    'tLTCUSD':'LTC/USD',
+    'tETHUSD': 'ETH/USD',
+}

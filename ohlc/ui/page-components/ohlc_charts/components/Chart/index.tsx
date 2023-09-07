@@ -3,11 +3,12 @@ import React from "react";
 import Highcharts from "highcharts/highstock";
 import "highcharts/css/annotations/popup.css";
 import HighchartsStock from "highcharts/modules/stock";
-import Select from "react-select";
 import styles from "./styles.module.css";
+import Select from "@/ui/common/select";
+
 HighchartsStock(Highcharts);
 import Filter from "../Filter/page";
-import { CHARTTYPE } from "../../../constant/index";
+import { CHARTTYPE,CURMAPPING } from "../../../constant/index";
 const Chart = ({ optionData, filter, setFilter, setChartType, chartType }) => {
   const { negative = false, barX } = optionData || {};
   return (
@@ -16,7 +17,7 @@ const Chart = ({ optionData, filter, setFilter, setChartType, chartType }) => {
         {optionData && (
           <div className={styles.filter}>
             <div className={styles.box}>
-              <p>{filter.select.label}</p>
+              <p>{CURMAPPING[filter.select]}</p>
               <p>
                 O
                 <span className={!negative ? styles.hight : styles.low}>

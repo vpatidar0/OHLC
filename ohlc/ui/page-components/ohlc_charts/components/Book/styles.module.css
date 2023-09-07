@@ -25,7 +25,7 @@
     cursor: pointer;
     text-transform: uppercase;
     margin-right: 4px;
-    padding: 4px;
+    padding: 8px;
     font-size: 14px;
 }
 
@@ -38,7 +38,7 @@
 }
 .postiveColor{
     background-color:  #e44b44;
-    height: 17px;
+    height: 18px;
     position: absolute;
     right: 0px;
     opacity: 00.3;
@@ -48,7 +48,7 @@
 }
 .negativeColor{
     background-color: rgba(3,202,155,0.4);;
-    height: 17px;
+    height: 18px;
     position: absolute;
     left: 0px;
 }

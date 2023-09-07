@@ -7,19 +7,16 @@ import Book from "./components/Book";
 import useCandlestick from "./hooks/useCandlestick";
 import { useState } from "react";
 import useFetchData from "./hooks/usefetchData";
-
+import LightChart from './components/LightChart';
 const MAPPING = {
   hollowcandlestick: useCandlestick,
   ohlc: useFetchData,
 };
 
 const OHLC = () => {
-  const [chartType, setChartType] = useState({
-    value: "hollowcandlestick",
-    label: "hollowcandlestick",
-  });
+  const [chartType, setChartType] = useState('hollowcandlestick');
 
-  const fun = MAPPING[chartType.value];
+  const fun = MAPPING[chartType];
 
   if (!fun) {
     return null;
@@ -37,6 +34,7 @@ const OHLC = () => {
           chartType={chartType}
         />
         <Book filter={filter} />
+        <LightChart/>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
