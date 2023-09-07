@@ -19,7 +19,7 @@ const LightChart = () => {
   const fetchData = async () => {
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/candles/trade%3A${selectedInterval.parma}%3A${selectFilter}/hist`
+      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/candles/trade%3A${selectedInterval.parma}%3A${selectFilter}/hist?limit=330`
     );
     const data = await response.json();
     const responseValue = await fetch(
@@ -34,16 +34,25 @@ const LightChart = () => {
       return {
         time: d[0] / 1000,
         open: parseFloat(d[1]),
-        high: parseFloat(d[2]),
-        low: parseFloat(d[3]),
-        close: parseFloat(d[4]),
+        close: parseFloat(d[2]),
+        high: parseFloat(d[3]),
+        low: parseFloat(d[4]),
+        
       };
     });
     if (!chartRef.current) {
       const chartOptions = {
         layout: {
-          textColor: 'black',
-          background: { type: 'solid', color: 'white' },
+          textColor: '#fff',
+          background: { type: 'solid', color: '#172d3e' },
+        },
+        grid: {
+          vertLines: {
+            color:'#385062', 
+          },
+          horzLines: {
+            color:'#385062', 
+          },
         },
       };
 
@@ -122,7 +131,7 @@ const LightChart = () => {
   };
   const { open, high, low, close, color, value } = toolTipValue || {}
   const style = { color: color, padding: '0px 5px 0px 2px' }
-  return <div>
+  return <div className={styles.container}>
     <div className={styles.head_box}>
       <div className={styles.title}>
       <div className={styles.heading}>{CURMAPPING[selectFilter]}</div>
@@ -143,7 +152,7 @@ const LightChart = () => {
         />
       </div>
     </div>
-    <div ref={chartContainerRef} id='contain' style={{ width: '100%', height: '400px' }} />
+    <div ref={chartContainerRef} id='contain' style={{ width: '100%', height: '395px' }} />
     <FilterButton handleIntervalChange={handleIntervalChange} selectedInterval={selectedInterval} />
   </div>;
 };
