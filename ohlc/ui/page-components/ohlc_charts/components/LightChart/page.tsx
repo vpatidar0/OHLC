@@ -14,9 +14,8 @@ const LightChart = ({ selectFilter }) => {
     setSelectedInterval(interval);
   };
   const { open, high, low, close, color, value, percentageChange,vloume } = toolTipValue || {}
-  console.log(vloume,'volume')
   const style = { color: color, padding: '0px 5px 0px 2px' }
-
+  
   return <div className={styles.container}>
     <div className={styles.header} >
       CHART{" "}
