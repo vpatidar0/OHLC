@@ -39,14 +39,7 @@ const useChart = ({selectFilter}) => {
 
     const data = await response.json();
     if(response.status){setLoading(false)}
-    const responseValue = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/stats1/pos.size:${selectedInterval.parma}:${selectFilter}:long/hist`
-    );
-    const dataValue = await responseValue.json();
-    const dataTime = data.map((item) => {
-      return { time: item[0] / 1000, value: item[5] }
-    })
-
+ 
     const cdata = data.map((d) => {
       return {
         time: d[0] / 1000,
@@ -103,10 +96,7 @@ const useChart = ({selectFilter}) => {
         topColor: '#2962FF',
         bottomColor: 'rgba(41, 98, 255, 0.28)',
       });
-      // const histogramSeries = chart.addHistogramSeries({ color: '#26a69a' });
-      // histogramSeries.setData(dataTime.sort((a, b) => a.time - b.time));
-      // areaSeries.setData(dataTime.sort((a, b) => a.time - b.time))
-
+   
       const candlestickSeries = chart.addCandlestickSeries({
         upColor: '#26a69a',
         downColor: '#ef5350',
