@@ -48,13 +48,11 @@ const Chart = ({ optionData, filter, setFilter, setChartType, chartType }) => {
         )}
         <div>
           <Select
-            value={chartType}
             onChange={(e) => {
               setChartType(e);
               setFilter((prev) => ({ ...prev, type: !prev.type }));
             }}
             options={CHARTTYPE}
-            name="chartType"
           />
         </div>
         <Filter filter={filter} setFilter={setFilter} />
