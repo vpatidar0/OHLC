@@ -15,10 +15,14 @@
     transition: top .3s;
     background: #172d3e;
     margin-bottom: 2px;
+    justify-content: space-between;
 }
 .text{
     color: #fff;
     margin: 0px 10px;
     cursor: pointer;
     font-weight: 600;
+}
+.head{
+    display: flex;
 }

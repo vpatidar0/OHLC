@@ -10,24 +10,23 @@ import dynamic from 'next/dynamic';
 const TradingView = dynamic(() => import('../trading-view/components/page'), {
   ssr: false,
 });
+const renderMapping = {
+  'Chart': LightChart ,
+  'Book': Book ,
+  "TradingView":TradingView
+}
 
 const OHLC = () => {
   const [selectType, setSelcetType] = useState('Chart')
-
-
-  const renderMapping = {
-    'Chart': <LightChart />,
-    'Book': <Book />,
-    "TradingView": <TradingView />
-  }
+  const [selectFilter, setSelectFilter] = useState('tBTCUSD')
   const Component = renderMapping[selectType] || null
 
   return (
     <div>
       <QueryClientProvider client={queryClient}>
-        <Header setSelcetType={setSelcetType} selectType={selectType} />
+        <Header setSelcetType={setSelcetType} selectType={selectType} setSelectFilter={setSelectFilter}/>
 
-        {Component ? Component : null}
+        {Component ? <Component selectFilter={selectFilter}/> : null}
       </QueryClientProvider>
     </div>
   );

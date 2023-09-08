@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const useBookData = ({filter}) => {
+const useBookData = ({selectFilter}) => {
   const [orderBook, setOrderBook] = useState<{ bids: any; asks: any }>({
     bids: [],
     asks: [],
@@ -13,7 +13,7 @@ const useBookData = ({filter}) => {
         JSON.stringify({
           event: "subscribe",
           channel: "book",
-          symbol: filter,
+          symbol: selectFilter,
           prec: "P0",
           freq: "F0",
           len: 25,

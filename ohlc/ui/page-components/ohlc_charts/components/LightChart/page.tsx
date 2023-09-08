@@ -6,11 +6,9 @@ import { options } from '../../../constant/filter'
 import { CURMAPPING } from '@/ui/page-components/constant';
 
 import useChart from '../../hooks/useChart';
-const LightChart = () => {
-
-
-  const { setSelectedInterval, toolTipValue, selectFilter, 
-    setSelectFilter, selectedInterval, chartContainerRef } = useChart()
+const LightChart = ({selectFilter}) => {
+  const { setSelectedInterval, toolTipValue, 
+     selectedInterval, chartContainerRef } = useChart({selectFilter})
 
   const handleIntervalChange = (interval) => {
     setSelectedInterval(interval);
@@ -29,14 +27,7 @@ const LightChart = () => {
         <div className={styles.sub_type}>C<span style={style}> {close}</span></div>
         <div style={style}>{value} ({percentageChange})</div>
       </div>
-      <div>
-        <Select
-          onChange={(e) => {
-            setSelectFilter(e)
-          }}
-          options={options}
-        />
-      </div>
+
     </div>
     <div ref={chartContainerRef} id='contain' style={{ width: '100%', height: '395px' }} />
     <FilterButton handleIntervalChange={handleIntervalChange} selectedInterval={selectedInterval} />

@@ -11,10 +11,9 @@ import {
   addTotal,
   CURMAPPING
 } from "@/ui/page-components/constant";
-const Book = () => {
-  const filter='tBTCUSD'
+const Book = ({selectFilter}) => {
   const [show, setShow] = useState(true);
-  const { orderBook } = useBookData({ filter });
+  const { orderBook } = useBookData({ selectFilter });
 
   const { asks, bids } = orderBook || {};
   const nagtive = addTotal({ data: asks });
@@ -24,7 +23,7 @@ const Book = () => {
     <div className={styles.cantiner}>
       <div className={styles.header} onClick={() => setShow((prev) => !prev)}>
         {show ? <BiChevronDown /> : <BiChevronRight />} Order Book{" "}
-        <span className={styles.ti}>{CURMAPPING[filter]}</span>
+        <span className={styles.ti}>{CURMAPPING[selectFilter]}</span>
       </div>
       {show ? (
         <div>

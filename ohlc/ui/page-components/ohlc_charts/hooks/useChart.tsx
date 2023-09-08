@@ -15,7 +15,7 @@ interface ToolTipValue {
   percentageChange: string;
 }
 
-const useChart = () => {
+const useChart = ({selectFilter}) => {
   const [selectedInterval, setSelectedInterval] = useState({
     time: 1,
     type: 'h',
@@ -24,7 +24,6 @@ const useChart = () => {
     page: '330'
   },);
 
-  const [selectFilter, setSelectFilter] = useState('tBTCUSD')
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const areaSeriesRef = useRef<ISeriesApi<"Area"> | null>(null);
@@ -142,6 +141,6 @@ const useChart = () => {
     fetchData()
   }, [selectedInterval, selectFilter]);
 
-  return { selectedInterval, chartContainerRef, setSelectedInterval, setSelectFilter, toolTipValue, selectFilter }
+  return { selectedInterval, chartContainerRef, setSelectedInterval,  toolTipValue }
 }
 export default useChart;
