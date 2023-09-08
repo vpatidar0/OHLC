@@ -1,6 +1,7 @@
+
 import { calculateOptionsForInterval } from '@/ui/page-components/hepler';
 import { useEffect, useState, useRef } from 'react';
-import { createChart, IChartApi, ISeriesApi } from 'lightweight-charts';
+import { createChart, IChartApi, ISeriesApi, SolidColor } from 'lightweight-charts';
 
 interface ToolTipValue {
   open: number;
@@ -12,6 +13,7 @@ interface ToolTipValue {
   vloume: number;
   percentageChange: string;
 }
+
 const useChart = () => {
   const [selectedInterval, setSelectedInterval] = useState({
     time: 1,
@@ -56,7 +58,7 @@ const useChart = () => {
       const chartOptions = {
         layout: {
           textColor: '#fff',
-          background: { type: 'solid', color: '#172d3e' },
+          background: { type: 'solid', color: '#172d3e' } as SolidColor,
         },
         grid: {
           vertLines: {
@@ -67,22 +69,18 @@ const useChart = () => {
           },
         },
         priceScale: {
-          borderColor: '#385062'
+          borderColor: '#385062',
         },
         timeScale: {
-          borderColor: '#385062'
+          borderColor: '#385062',
         },
       };
 
 
-
-      const chartContainer = chartContainerRef.current;
-
+      const chartContainer = chartContainerRef.current || '';
+     
       const chart = createChart(chartContainer, chartOptions);
-      const intervalOptions = calculateOptionsForInterval(
-        selectedInterval
-      );
-
+  
       const areaSeries = chart.addAreaSeries({
         lineColor: '#2962FF',
         topColor: '#2962FF',
