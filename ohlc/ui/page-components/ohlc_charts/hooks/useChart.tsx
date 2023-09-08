@@ -1,4 +1,5 @@
 
+
 import { calculateOptionsForInterval } from '@/ui/page-components/hepler';
 import { useEffect, useState, useRef } from 'react';
 import { createChart, IChartApi, ISeriesApi, SolidColor } from 'lightweight-charts';

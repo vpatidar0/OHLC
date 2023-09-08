@@ -1,3 +1,4 @@
+"use client";
 import styles from './styles.module.css'
 import FilterButton from './FilterButton/page';
 import Select from "@/ui/common/select";
