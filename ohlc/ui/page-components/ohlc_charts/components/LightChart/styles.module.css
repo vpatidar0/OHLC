@@ -18,6 +18,11 @@
 .heading{
     margin-right: 5px;
 }
+.sub_type{
+    color: #8b969f !important;
+
+}
+
 .container{
     width: 90%;
     margin: auto;

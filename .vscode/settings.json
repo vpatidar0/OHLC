@@ -1,0 +1,29 @@
+{
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  "git.confirmSync": false,
+
+  "tabnine.experimentalAutoImports": true,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  "workbench.startupEditor": "none",
+
+  "vscodeGoogleTranslate.preferredLanguage": "Vietnamese",
+
+  "git.openRepositoryInParentFolders": "never",
+
+  "javascript.updateImportsOnFileMove.enabled": "never",
+
+  "eslint.codeActionsOnSave.rules": null,
+
+  "settingsSync.ignoredSettings": [],
+
+  "eslint.execArgv": null,
+
+  "gitlens.advanced.messages": {
+    "suppressLineUncommittedWarning": true
+  }
+}

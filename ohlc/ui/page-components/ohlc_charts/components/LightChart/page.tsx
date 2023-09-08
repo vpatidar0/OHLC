@@ -13,7 +13,9 @@ interface ToolTipValue {
   low: number; 
   close: number; 
   color: string; 
-  value: number; 
+  value: string; 
+  vloume:number;
+  percentageChange:string;
 }
 
 const LightChart = () => {
@@ -27,7 +29,7 @@ const LightChart = () => {
 
   const fetchData = async () => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/candles/trade%3A${selectedInterval.parma}%3A${selectFilter}/hist?limit=${selectedInterval.page}`
+      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/candles/trade:${selectedInterval.parma}:${selectFilter}/hist?limit=${selectedInterval.page}`
     );
     const data = await response.json();
     const responseValue = await fetch(
@@ -119,7 +121,8 @@ const LightChart = () => {
             close: close.toFixed(2),
             vloume: volumeValue,
             color: color,
-            value: (close - open).toFixed(2),
+            value: ((close - open) >= 0 ? ' +' : '') + (close - open).toFixed(2),
+            percentageChange : `${(((open - close) / close) * 100).toFixed(2)} %`
           })
         }
       }
@@ -143,18 +146,19 @@ const LightChart = () => {
   const handleIntervalChange = (interval) => {
     setSelectedInterval(interval);
   };
-  const { open, high, low, close, color, value } = toolTipValue || {}
+  const { open, high, low, close, color, value,percentageChange } = toolTipValue || {}
 
   const style = { color: color, padding: '0px 5px 0px 2px' }
+
   return <div className={styles.container}>
     <div className={styles.head_box}>
       <div className={styles.title}>
       <div className={styles.heading}>{CURMAPPING[selectFilter]}</div>
-        <div>O <span style={style}> {open}</span></div>
-        <div>H<span style={style} >{high}</span></div>
-        <div>L<span style={style}> {low}</span></div>
-        <div>C<span style={style}> {close}</span></div>
-        <div style={style}>{value}</div>
+        <div className={styles.sub_type}>O<span style={style}> {open}</span></div>
+        <div  className={styles.sub_type}>H<span style={style} >{high}</span></div>
+        <div  className={styles.sub_type}>L<span style={style}> {low}</span></div>
+        <div  className={styles.sub_type}>C<span style={style}> {close}</span></div>
+        <div style={style}>{value} ({percentageChange})</div>
       </div>
       <div>
         <Select
