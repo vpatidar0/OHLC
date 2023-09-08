@@ -51,7 +51,7 @@ const useChart = ({selectFilter}) => {
         close: parseFloat(d[2]),
         high: parseFloat(d[3]),
         low: parseFloat(d[4]),
-
+        vloume:d[5]
       };
     });
     if (!chartRef.current) {
@@ -112,15 +112,14 @@ const useChart = ({selectFilter}) => {
         const currentTime = param.time;
         const candleData = cdata.find((data) => data.time === currentTime);
         if (candleData) {
-          const { open, high, low, close } = candleData;
-          const volumeValue = candleData.v || 'N/A';
+          const { open, high, low, close ,vloume} = candleData;
           const color = close >= open ? 'green' : 'red';
           setToolTipValue({
             open: Math.ceil(open),
             high: Math.ceil(high),
             low: Math.ceil(low),
             close: Math.ceil(close),
-            vloume: Math.ceil(volumeValue),
+            vloume: vloume >= 0.5?Math.ceil(vloume||0):0,
             color: color,
             value: ((high - low +1 ) >= 0 ? ' +' : '') + (high - low+1).toFixed(2),
             percentageChange: `${(((high - low) / low) * 100).toFixed(2)}%`
