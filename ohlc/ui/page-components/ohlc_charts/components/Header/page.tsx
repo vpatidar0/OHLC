@@ -18,6 +18,7 @@ const Header = ({ setSelcetType, selectType, setSelectFilter }) => {
                 setSelectFilter(e)
             }}
             options={options}
-        /></div>
+        />
+    </div>
 }
 export default Header;

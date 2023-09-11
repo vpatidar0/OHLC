@@ -11,9 +11,9 @@ const TradingView = dynamic(() => import('../trading-view/components/page'), {
   ssr: false,
 });
 const renderMapping = {
-  'Chart': LightChart ,
-  'Book': Book ,
-  "TradingView":TradingView
+  'Chart': LightChart,
+  'Book': Book,
+  "TradingView": TradingView
 }
 
 const OHLC = () => {
@@ -24,9 +24,9 @@ const OHLC = () => {
   return (
     <div>
       <QueryClientProvider client={queryClient}>
-        <Header setSelcetType={setSelcetType} selectType={selectType} setSelectFilter={setSelectFilter}/>
+        <Header setSelcetType={setSelcetType} selectType={selectType} setSelectFilter={setSelectFilter} />
 
-        {Component ? <Component selectFilter={selectFilter}/> : null}
+        {Component ? <Component selectFilter={selectFilter} /> : null}
       </QueryClientProvider>
     </div>
   );

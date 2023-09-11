@@ -11,7 +11,7 @@ import {
   addTotal,
   CURMAPPING
 } from "@/ui/page-components/constant";
-const Book = ({selectFilter}) => {
+const Book = ({ selectFilter }) => {
   const [show, setShow] = useState(true);
   const { orderBook } = useBookData({ selectFilter });
 
