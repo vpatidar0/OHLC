@@ -138,7 +138,6 @@ const useChart = ({selectFilter}) => {
     chartRef.current.timeScale().applyOptions({
       timeVisible: true,
       secondsVisible: true,
-      tickMarkFormatter,
     });
 
     chartRef.current.timeScale().setVisibleRange(visibleRange);
