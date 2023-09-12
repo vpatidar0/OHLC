@@ -10,19 +10,19 @@ const options = [
 
 const Filter = ({ filter, setFilter }) => {
 
-
+    const onClickFilter = (item) => {
+        setFilter((prev) =>
+            ({ ...prev, 'time': item.value }))
+    }
     return <div className={styles.container}>
         {control.map((item) => {
             return <div key={item.value} role='presentation'
-                onClick={() => {
-                    setFilter((prev) =>
-                        ({ ...prev, 'time': item.value }))
-                }}
+                onClick={() => onClickFilter(item)}
                 className={`${styles.button} 
                 ${item.value === filter.time && styles.active}`} >{item.title}</div>
         })}
 
-        <Select options={options} onChange={(e) => { setFilter((prev) => ({ ...prev, 'select': e })) }} />
+        <Select options={options} onChange={(e) => onClickFilter(e)} />
     </div>
 }
 export default Filter;

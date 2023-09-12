@@ -1,16 +1,21 @@
 "use client";
 import { useState } from "react";
-import useBookData from "../../hooks/useBookData";
-import styles from "./styles.module.css";
+
 import { BiChevronDown, BiChevronRight } from "react-icons/bi";
-import Heaedr from "./Header";
-import Body from "./Body";
+
 import {
   positiveDataPoint,
   negativeDataPoint,
   addTotal,
   CURMAPPING
 } from "@/ui/page-components/constant";
+
+import useBookData from "../../hooks/useBookData";
+
+import Heaedr from "./Header";
+import Body from "./Body";
+import styles from "./styles.module.css";
+
 const Book = ({ selectFilter }) => {
   const [show, setShow] = useState(true);
   const { orderBook } = useBookData({ selectFilter });

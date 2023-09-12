@@ -1,6 +1,6 @@
-import styles from '../styles.module.css';
-
 import { roundPrice, widthCal } from '@/ui/page-components/constant'
+
+import styles from '../styles.module.css';
 
 const Body = ({ data, pointData, name = '' }) => {
     return <div className={styles.body}>  {
